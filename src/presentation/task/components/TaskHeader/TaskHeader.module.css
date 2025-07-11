@@ -1,0 +1,12 @@
+.taskboard__header {
+  margin-bottom: 1rem;
+  background-color: #2c2f3a;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.taskboard__headerTitle {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}

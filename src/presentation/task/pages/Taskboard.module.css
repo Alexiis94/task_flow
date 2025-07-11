@@ -1,0 +1,15 @@
+.taskboard {
+  height: 100vh;
+  width: 100%;
+  overflow-x: auto;
+  background-color: #444c5f;
+  padding: 1rem;
+  color: #fff;
+  font-family: "Arial", sans-serif;
+}
+
+.taskboard__columns {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}

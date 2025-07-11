@@ -1,0 +1,7 @@
+.taskboard_taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}

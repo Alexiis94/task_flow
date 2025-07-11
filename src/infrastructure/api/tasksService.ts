@@ -1,0 +1,24 @@
+import axiosInstance from "./axiosInstance";
+import type { Task } from "../../domain/task/task";
+
+const getTasks = async (): Promise<Task[]> => {
+  try {
+    const response = await axiosInstance.get(`/tasks`);
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener datos:", error);
+    throw error;
+  }
+};
+
+const createTask = async (task: Omit<Task, "id">): Promise<Task> => {
+  try {
+    const response = await axiosInstance.post("/tasks", task);
+    return response.data;
+  } catch (error) {
+    console.error("Error al crear un task", error);
+    throw error;
+  }
+};
+
+export { getTasks, createTask };
