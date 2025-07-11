@@ -7,11 +7,8 @@ import { useBoardData } from "../../../application/hooks/useBoardData";
 import { useCreateTask } from "../../../application/hooks/useCreateTask";
 
 import type { Task } from "../../../domain/task/task";
-import { useState } from "react";
 
 const TaskBoard = () => {
-  const [activeColumnId, setActiveColumnId] = useState<string | null>(null);
-
   const { dataBoard, setDataBoard, isLoading } = useBoardData();
   const { handleCreateTask } = useCreateTask();
 
@@ -53,9 +50,6 @@ const TaskBoard = () => {
             tasks={getTasksByColumnId(column.id)}
             columnId={column.id}
             onAddTask={addTaskToColumn}
-            isActive={activeColumnId === column.id}
-            onActivate={() => setActiveColumnId(column.id)}
-            onCancel={() => setActiveColumnId(null)}
           />
         ))}
       </div>

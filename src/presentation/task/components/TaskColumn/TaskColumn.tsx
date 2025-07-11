@@ -6,32 +6,28 @@ import type { Task } from "../../../../domain/task/task";
 import { useState } from "react";
 import Input from "../../../../components/common/Input";
 
+import { useActiveColumnStore } from "../../../../store/task/useActiveColumnStore";
+
 interface TaskColumnProps {
   title: string;
   tasks: Task[];
   onAddTask: (task: Omit<Task, "id">) => void;
   columnId: string;
-  isActive: boolean;
-  onActivate: () => void;
-  onCancel: () => void;
 }
 
-const TaskColumn = ({
-  title,
-  tasks,
-  onAddTask,
-  columnId,
-  isActive,
-  onActivate,
-  onCancel,
-}: TaskColumnProps) => {
+const TaskColumn = ({ title, tasks, onAddTask, columnId }: TaskColumnProps) => {
   const [taskTitle, setTaskTitle] = useState<string>("");
+  const { activeColumnId, setAtiveColumn, clearActiveColumn } =
+    useActiveColumnStore();
+
+  const isActive = activeColumnId === columnId;
+
   const handleCreate = () => {
     if (!taskTitle) return;
 
     onAddTask({ title: taskTitle, columnId });
     setTaskTitle("");
-    onCancel();
+    clearActiveColumn();
   };
 
   return (
@@ -61,11 +57,11 @@ const TaskColumn = ({
         )}
 
         <div className={styles.taskboard__actions}>
-          <Button variant="primary" onClick={onActivate}>
+          <Button variant="primary" onClick={() => setAtiveColumn(columnId)}>
             + Añade una Tarjeta
           </Button>
           {isActive && (
-            <Button variant="cancel" onClick={onCancel}>
+            <Button variant="cancel" onClick={() => clearActiveColumn()}>
               X
             </Button>
           )}
