@@ -1,34 +1,50 @@
 import styles from "./Taskboard.module.css";
 
-import TaskHeader from "../components/TaskHeader";
+import { useRef, useState } from "react";
 
+import Button from "../../../components/common/Button";
+import Input from "../../../components/common/Input";
+
+import TaskHeader from "../components/TaskHeader";
 import TaskColumn from "../components/TaskColumn";
-import { useBoardData } from "../../../application/hooks/useBoardData";
-import { useCreateTask } from "../../../application/hooks/useCreateTask";
+
+import { useBoardData } from "../../../application/hooks/task/useBoardData";
+import { useCreateTask } from "../../../application/hooks/task/useCreateTask";
 
 import type { Task } from "../../../domain/task/task";
+import { useClickOutsite } from "../../../infrastructure/hooks/useClickOutsite";
+import { useCreateColumn } from "../../../application/hooks/task/useCreateColumn";
 
 const TaskBoard = () => {
-  const { dataBoard, setDataBoard, isLoading } = useBoardData();
-  const { handleCreateTask } = useCreateTask();
+  const [isAddingColumn, setIsAddingColumn] = useState<boolean>(false);
+  const [columnTitle, setColumnTitle] = useState<string>("");
 
-  const getTasksByColumnId = (id: string) => {
-    return dataBoard.find((column) => column.id === id)?.tasks || [];
+  const { isLoading, dataBoard } = useBoardData();
+  const { handleCreateTask } = useCreateTask();
+  const { handleCreateColumn, isCreatingColumn } = useCreateColumn();
+
+  // Desactivamos input cuando damos click en otra lado
+  // que no sea el input activo
+  const inputRef = useRef<HTMLDivElement>(null);
+  useClickOutsite(inputRef, () => {
+    if (isAddingColumn) setIsAddingColumn(false);
+  });
+
+  const handleAddTask = async (task: Omit<Task, "id">) => {
+    try {
+      await handleCreateTask(task);
+    } catch (error) {
+      console.error("Error creando tarea", error);
+    }
   };
 
-  const addTaskToColumn = async (task: Omit<Task, "id">) => {
+  const handleAddColumn = async () => {
     try {
-      const newTask = await handleCreateTask(task);
-
-      setDataBoard((prev: any) =>
-        prev.map((col: any) =>
-          col.id === newTask.columnId
-            ? { ...col, tasks: [...(col.tasks || []), newTask] }
-            : col
-        )
-      );
+      await handleCreateColumn(columnTitle);
+      setColumnTitle("");
+      setIsAddingColumn(false);
     } catch (error) {
-      console.log("Error al crear una Tarea", error);
+      console.error("Error creando columna", error);
     }
   };
 
@@ -42,16 +58,46 @@ const TaskBoard = () => {
       <TaskHeader title="Task Board" />
 
       {/* task columns */}
-      <div className={styles.taskboard__columns}>
-        {dataBoard.map((column) => (
-          <TaskColumn
-            key={column.id}
-            title={column.title}
-            tasks={getTasksByColumnId(column.id)}
-            columnId={column.id}
-            onAddTask={addTaskToColumn}
-          />
-        ))}
+      <div className={styles.tasskboard__wrapper}>
+        <div className={styles.taskboard__columns}>
+          {dataBoard.map((column) => (
+            <TaskColumn
+              key={column.id}
+              title={column.title}
+              tasks={column.tasks ?? []}
+              columnId={column.id}
+              onAddTask={handleAddTask}
+            />
+          ))}
+
+          {isCreatingColumn ? (
+            <div className={styles.taskboard__input}>Creando Columna....</div>
+          ) : (
+            <div
+              className={`${
+                isAddingColumn ? styles.taskboard__addingColumn : ""
+              }`}
+            >
+              {isAddingColumn && (
+                <div ref={inputRef}>
+                  <Input
+                    placeHolder="Ingrese titulo"
+                    className={styles.taskboard__input}
+                    onChange={(e) => setColumnTitle(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleAddColumn()}
+                    autoFocus
+                  />
+                </div>
+              )}
+              <Button
+                variant="tertiary"
+                onClick={() => setIsAddingColumn(true)}
+              >
+                {isAddingColumn ? "Añade Columna" : "+ Añadir Columna"}
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

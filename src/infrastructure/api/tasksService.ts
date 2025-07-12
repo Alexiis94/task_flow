@@ -21,4 +21,13 @@ const createTask = async (task: Omit<Task, "id">): Promise<Task> => {
   }
 };
 
-export { getTasks, createTask };
+const deleteTask = async (id: string): Promise<void> => {
+  try {
+    await axiosInstance.delete(`/tasks/${id}`);
+  } catch (error) {
+    console.error("Error al eliminar un task", error);
+    throw error;
+  }
+};
+
+export { getTasks, createTask, deleteTask };

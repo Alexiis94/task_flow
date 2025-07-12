@@ -1,15 +1,38 @@
 .taskboard {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100%;
-  overflow-x: auto;
   background-color: #444c5f;
   padding: 1rem;
   color: #fff;
-  font-family: "Arial", sans-serif;
+}
+
+.tasskboard__wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .taskboard__columns {
   display: flex;
   gap: 1rem;
-  width: 100%;
+  scroll-behavior: smooth;
+}
+.taskboard__addingColumn {
+  background-color: #2c2f3a;
+  border-radius: 8px;
+  padding: 1rem;
+  height: fit-content;
+}
+
+.taskboard__input {
+  min-width: 250px;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
 }

@@ -4,7 +4,7 @@
   justify-content: center;
   padding: 0.2rem 1rem;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 500;
   color: #fff;
   border: none;
   border-radius: 0.25rem;
@@ -12,6 +12,7 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .primary {
@@ -20,6 +21,11 @@
 
 .secondary {
   background-color: #aa1f59;
+}
+
+.tertiary {
+  background-color: #3174aa;
+  min-width: 250px;
 }
 
 .cancel {

@@ -4,7 +4,7 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
-  variant?: "primary" | "secondary" | "cancel"; // <- agrega variante
+  variant?: "primary" | "secondary" | "tertiary" | "cancel"; // <- agrega variante
 }
 
 const Button = ({

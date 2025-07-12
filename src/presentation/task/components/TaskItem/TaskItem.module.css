@@ -6,3 +6,27 @@
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.taskboard_taskItemTitle {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.taskboard_taskItemDescription {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+}
+
+.taskboard_taskItemContent {
+  position: relative;
+}
+
+.taskBoard_taskItem_delete {
+  position: absolute;
+  padding: 0.3rem;
+  right: 0;
+  top: 0;
+}
