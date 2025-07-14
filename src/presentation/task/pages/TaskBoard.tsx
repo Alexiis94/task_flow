@@ -40,6 +40,9 @@ const TaskBoard = () => {
 
   const handleAddColumn = async () => {
     try {
+      if (!columnTitle) {
+        return;
+      }
       await handleCreateColumn(columnTitle);
       setColumnTitle("");
       setIsAddingColumn(false);
@@ -58,7 +61,7 @@ const TaskBoard = () => {
       <TaskHeader title="Task Board" />
 
       {/* task columns */}
-      <div className={styles.taskboardWrapper}>
+      <section className={styles.taskboardWrapper}>
         <div className={styles.taskboardColumns}>
           {dataBoard.map((column) => (
             <TaskColumn
@@ -87,18 +90,33 @@ const TaskBoard = () => {
                     onKeyDown={(e) => e.key === "Enter" && handleAddColumn()}
                     autoFocus
                   />
+                  <Button variant="tertiary" onClick={handleAddColumn}>
+                    Añade Columna
+                  </Button>
                 </div>
               )}
-              <Button
-                variant="tertiary"
-                onClick={() => setIsAddingColumn(true)}
-              >
-                {isAddingColumn ? "Añade Columna" : "+ Añadir Columna"}
-              </Button>
+              {!isAddingColumn && (
+                <Button
+                  variant="tertiary"
+                  onClick={() => setIsAddingColumn(true)}
+                >
+                  + Añadir Columna
+                </Button>
+              )}
             </div>
           )}
         </div>
-      </div>
+      </section>
+
+      <footer className={styles.taskboardFooter}>
+        <a
+          href="https://github.com/Alexiis94/task_flow"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Repositorio GitHub
+        </a>
+      </footer>
     </div>
   );
 };

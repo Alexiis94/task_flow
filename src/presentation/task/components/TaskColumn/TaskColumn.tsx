@@ -63,22 +63,29 @@ const TaskColumn = ({ title, tasks, onAddTask, columnId }: TaskColumnProps) => {
               onKeyDown={(e) => e.key === "Enter" && handleCreate()}
               autoFocus
             />
+            <div className={styles.taskboardColumnActions}>
+              <Button variant="primary" onClick={() => handleCreate()}>
+                Añade Tarjeta
+              </Button>
+              {isActive && (
+                <Button variant="cancel" onClick={() => clearActiveColumn()}>
+                  X
+                </Button>
+              )}
+            </div>
+          </div>
+        )}
+        {/* Boton para activar el input */}
+        {!isActive && (
+          <div className={styles.taskboardColumnActions}>
+            <Button variant="primary" onClick={() => setAtiveColumn(columnId)}>
+              + Añade una Tarjeta
+            </Button>
           </div>
         )}
 
         {/* Carga del cargado al crear */}
         {creatingColumnId === columnId && <div>Task Is Creating......</div>}
-
-        <div className={styles.taskboardColumnActions}>
-          <Button variant="primary" onClick={() => setAtiveColumn(columnId)}>
-            {isActive ? "Añade Tarjeta" : " + Añade una Tarjeta"}
-          </Button>
-          {isActive && (
-            <Button variant="cancel" onClick={() => clearActiveColumn()}>
-              X
-            </Button>
-          )}
-        </div>
       </div>
     </div>
   );

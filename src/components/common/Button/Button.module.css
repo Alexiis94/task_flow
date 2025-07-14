@@ -9,34 +9,41 @@
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
-  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Variantes */
 .primary {
   background-color: var(--color-success);
 }
+.primary:hover {
+  background-color: var(--color-success-transparent);
+}
 
-.secondary {
+.secondary,
+.cancel {
   background-color: var(--color-danger);
+  width: auto;
+}
+.secondary:hover,
+.cancel:hover {
+  background-color: var(--color-danger-transparent);
 }
 
 .tertiary {
   background-color: var(--color-info);
   min-width: 250px;
 }
-
-.cancel {
-  background-color: var(--color-danger);
-  width: auto;
+.tertiary:hover {
+  background-color: var(--color-info-transparent);
 }
 
 .update {
   background-color: var(--color-warning);
   width: auto;
 }
-.button:hover {
-  opacity: 0.7;
+.update:hover {
+  background-color: var(--color-warning-hover);
 }
