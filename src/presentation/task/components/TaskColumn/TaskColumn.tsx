@@ -19,6 +19,7 @@ interface TaskColumnProps {
 
 const TaskColumn = ({ title, tasks, onAddTask, columnId }: TaskColumnProps) => {
   const [taskTitle, setTaskTitle] = useState<string>("");
+
   const { creatingColumnId } = useCreateTask();
   const { activeColumnId, setAtiveColumn, clearActiveColumn } =
     useActiveColumnStore();
@@ -49,12 +50,7 @@ const TaskColumn = ({ title, tasks, onAddTask, columnId }: TaskColumnProps) => {
         {/* section task list */}
         <TaskList>
           {tasks.map((task) => (
-            <TaskItem
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              description={task.description}
-            />
+            <TaskItem key={task.id} task={task} />
           ))}
         </TaskList>
 

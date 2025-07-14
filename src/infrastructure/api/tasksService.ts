@@ -30,4 +30,14 @@ const deleteTask = async (id: string): Promise<void> => {
   }
 };
 
-export { getTasks, createTask, deleteTask };
+const updateTask = async (id: string, task: Partial<Task>): Promise<Task> => {
+  try {
+    const response = await axiosInstance.put(`/tasks/${id}`, task);
+    return response.data;
+  } catch (error) {
+    console.error("Error al actualizar un task", error);
+    throw error;
+  }
+};
+
+export { getTasks, createTask, deleteTask, updateTask };

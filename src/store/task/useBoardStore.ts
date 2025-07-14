@@ -13,6 +13,9 @@ interface BoardStore {
   addTaskToColumn: (task: Task) => void;
   removeTaskToColumn: (id: string) => void;
   addColumn: (column: TaskColumn) => void;
+  updateTask: (task: Task) => void;
+  editingId: string | null;
+  setEditingId: (id: string | null) => void;
 }
 
 export const useBoardStore = create<BoardStore>()(
@@ -21,7 +24,8 @@ export const useBoardStore = create<BoardStore>()(
       dataBoard: [],
       isLoading: false,
       creatingColumnId: null,
-
+      editingId: null,
+      setEditingId: (id) => set({ editingId: id }),
       setCreatingColumnId: (value) => set({ creatingColumnId: value }),
 
       fetchBoard: async () => {
@@ -60,6 +64,17 @@ export const useBoardStore = create<BoardStore>()(
       addColumn: (newColumn) => {
         set((state) => ({
           dataBoard: [...state.dataBoard, newColumn],
+        }));
+      },
+
+      updateTask: (updatedTask) => {
+        set((state) => ({
+          dataBoard: state.dataBoard.map((column) => ({
+            ...column,
+            tasks: column.tasks?.map((task) =>
+              task.id === updatedTask.id ? updatedTask : task
+            ),
+          })),
         }));
       },
     }),

@@ -5,6 +5,11 @@
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+}
+.taskboard_taskItem:hover {
+  background-color: #4a4f5a;
+  border: 2px solid #6b7280;
 }
 
 .taskboard_taskItemTitle {
@@ -24,9 +29,19 @@
   position: relative;
 }
 
-.taskBoard_taskItem_delete {
+.taskboard_taskItemActions {
+  display: none;
   position: absolute;
-  padding: 0.3rem;
   right: 0;
   top: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+.taskboard_taskUpdateActions {
+  display: flex;
+  gap: 0.5rem;
+}
+.taskboard_taskItem:hover .taskboard_taskItemActions {
+  display: flex;
 }
