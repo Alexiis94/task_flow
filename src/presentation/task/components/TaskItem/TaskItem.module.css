@@ -1,5 +1,5 @@
-.taskboard_taskItem {
-  background-color: #3a3f4cdc;
+.taskItem {
+  background-color: var(--color-bg-secondary);
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 4px;
@@ -7,29 +7,29 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 2px solid transparent;
 }
-.taskboard_taskItem:hover {
-  background-color: #4a4f5a;
-  border: 2px solid #6b7280;
+.taskItem:hover {
+  background-color: var(--color-bg-hover);
+  border: 2px solid var(--color-border-light);
 }
 
-.taskboard_taskItemTitle {
+.taskItemTitle {
   font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
   margin-bottom: 0.25rem;
 }
 
-.taskboard_taskItemDescription {
+.taskItemDescription {
   font-size: 0.875rem;
   color: #d1d5db;
   margin-bottom: 0.5rem;
 }
 
-.taskboard_taskItemContent {
+.taskItemContent {
   position: relative;
 }
 
-.taskboard_taskItemActions {
+.taskItemActions {
   display: none;
   position: absolute;
   right: 0;
@@ -38,10 +38,10 @@
   align-items: center;
   gap: 0.5rem;
 }
-.taskboard_taskUpdateActions {
+.taskUpdateActions {
   display: flex;
   gap: 0.5rem;
 }
-.taskboard_taskItem:hover .taskboard_taskItemActions {
+.taskItem:hover .taskItemActions {
   display: flex;
 }

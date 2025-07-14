@@ -1,0 +1,27 @@
+:root {
+  /* Neutros */
+  --color-white: #ffffff;
+  --color-white-alt: #fff;
+  --color-black: #000;
+
+  /* Fondo y contenedores */
+  --color-bg-primary: #2c2f3a;
+  --color-bg-secondary: #3a3f4cdc;
+  --color-bg-hover: #4a4f5a;
+  --color-bg-board: #444c5f;
+
+  /* Texto */
+  --color-text-default: #000;
+  --color-text-light: #fff;
+  --color-text-subtle: #d1d5db;
+
+  /* Bordes */
+  --color-border-light: #cccccc86;
+
+  /* Botones o estados */
+  --color-danger: #aa1f59;
+  --color-success: #35b15a;
+  --color-info: #3174aa;
+  --color-warning: #b1ae08;
+  --color-accent: #6b7280;
+}

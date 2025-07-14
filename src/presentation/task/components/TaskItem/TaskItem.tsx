@@ -33,21 +33,22 @@ const TaskItem = ({ task }: TaskItemProps) => {
     });
     setEditingId(null);
   };
+
   if (isDeleting) {
-    return <li className={styles.taskboard_taskItem}>Task is Deleting...</li>;
+    return <li className={styles.taskItem}>Eliminando la tarea...</li>;
   }
   if (isUpdatingTask) {
-    return <li className={styles.taskboard_taskItem}>Task is Updating...</li>;
+    return <li className={styles.taskItem}>Actualizando la tarea...</li>;
   }
 
   return (
-    <li className={styles.taskboard_taskItem}>
-      <div className={styles.taskboard_taskItemContent}>
+    <li className={styles.taskItem}>
+      <div className={styles.taskItemContent}>
         {!isActiveUpdate && (
-          <div className={styles.taskboard_taskItemActions}>
+          <div className={styles.taskItemActions}>
             <Button
               variant="update"
-              className={styles.taskBoard_taskItem}
+              className={styles.taskItem}
               onClick={() => {
                 setEditingId(id);
               }}
@@ -56,7 +57,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
             </Button>
             <Button
               variant="cancel"
-              className={styles.taskBoard_taskItem}
+              className={styles.taskItem}
               onClick={() => handleRemoveTask(id)}
             >
               <TrashIcon />
@@ -67,17 +68,17 @@ const TaskItem = ({ task }: TaskItemProps) => {
         {isActiveUpdate && id === editingId ? (
           <>
             <Input
-              className={styles.taskboard_taskItemTitle}
+              className={styles.taskItemTitle}
               value={editTitle}
               onChange={(e) => setEditTitle(e.target.value)}
             />
             <Input
-              className={styles.taskboard_taskItemDescription}
+              className={styles.taskItemDescription}
               value={editDescription}
               type="textarea"
               onChange={(e) => setEditDescription(e.target.value)}
             />
-            <div className={styles.taskboard_taskUpdateActions}>
+            <div className={styles.taskUpdateActions}>
               <Button variant="primary" onClick={() => handleUpdateTaskClick()}>
                 Guardar
               </Button>
@@ -88,10 +89,8 @@ const TaskItem = ({ task }: TaskItemProps) => {
           </>
         ) : (
           <>
-            <h6 className={styles.taskboard_taskItemTitle}>{title}</h6>
-            <p className={styles.taskboard_taskItemDescription}>
-              {description}
-            </p>
+            <h6 className={styles.taskItemTitle}>{title}</h6>
+            <p className={styles.taskItemDescription}>{description}</p>
           </>
         )}
       </div>

@@ -5,7 +5,7 @@ interface TaskListProps {
 }
 
 const TaskList = ({ children }: TaskListProps) => {
-  return <ul className={styles.taskboard_taskList}>{children}</ul>;
+  return <ul className={styles.taskList}>{children}</ul>;
 };
 
 export default TaskList;

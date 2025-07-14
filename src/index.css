@@ -1,3 +1,4 @@
+@import "./styles/colors.css"; /* <- Importación de variables */
 /* CSS Reset */
 *,
 *::before,

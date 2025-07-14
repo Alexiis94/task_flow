@@ -6,8 +6,8 @@ interface TaskHeaderProps {
 
 const TaskHeader = ({ title }: TaskHeaderProps) => {
   return (
-    <div className={styles.taskboard__header}>
-      <h1 className={styles.taskboard__headerTitle}>{title}</h1>
+    <div className={styles.taskboardHeader}>
+      <h1 className={styles.taskboardHeaderTitle}>{title}</h1>
     </div>
   );
 };

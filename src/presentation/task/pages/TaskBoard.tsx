@@ -49,7 +49,7 @@ const TaskBoard = () => {
   };
 
   if (isLoading) {
-    return <div className={styles.loading}>Loading...</div>;
+    return <div className={styles.taskboardLoading}>Cargando...</div>;
   }
 
   return (
@@ -58,8 +58,8 @@ const TaskBoard = () => {
       <TaskHeader title="Task Board" />
 
       {/* task columns */}
-      <div className={styles.tasskboard__wrapper}>
-        <div className={styles.taskboard__columns}>
+      <div className={styles.taskboardWrapper}>
+        <div className={styles.taskboardColumns}>
           {dataBoard.map((column) => (
             <TaskColumn
               key={column.id}
@@ -71,18 +71,18 @@ const TaskBoard = () => {
           ))}
 
           {isCreatingColumn ? (
-            <div className={styles.taskboard__input}>Creando Columna....</div>
+            <div className={styles.taskboardInput}>Creando Columna....</div>
           ) : (
             <div
               className={`${
-                isAddingColumn ? styles.taskboard__addingColumn : ""
+                isAddingColumn ? styles.taskboardAddingColumn : ""
               }`}
             >
               {isAddingColumn && (
                 <div ref={inputRef}>
                   <Input
                     placeHolder="Ingrese titulo"
-                    className={styles.taskboard__input}
+                    className={styles.taskboardInput}
                     onChange={(e) => setColumnTitle(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleAddColumn()}
                     autoFocus

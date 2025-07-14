@@ -42,10 +42,10 @@ const TaskColumn = ({ title, tasks, onAddTask, columnId }: TaskColumnProps) => {
   };
 
   return (
-    <div className={styles.taskboard__column}>
+    <div className={styles.taskboardColumn}>
       {/* header */}
-      <div className={styles.taskboard__columnHeader}>
-        <h2 className={styles.taskboard__columnTitle}> {title}</h2>
+      <div className={styles.taskboardColumnHeader}>
+        <h2 className={styles.taskboardColumnTitle}> {title}</h2>
 
         {/* section task list */}
         <TaskList>
@@ -69,7 +69,7 @@ const TaskColumn = ({ title, tasks, onAddTask, columnId }: TaskColumnProps) => {
         {/* Carga del cargado al crear */}
         {creatingColumnId === columnId && <div>Task Is Creating......</div>}
 
-        <div className={styles.taskboard__actions}>
+        <div className={styles.taskboardColumnActions}>
           <Button variant="primary" onClick={() => setAtiveColumn(columnId)}>
             {isActive ? "Añade Tarjeta" : " + Añade una Tarjeta"}
           </Button>

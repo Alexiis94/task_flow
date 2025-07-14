@@ -16,25 +16,25 @@
 }
 
 .primary {
-  background-color: #35b15a;
+  background-color: var(--color-success);
 }
 
 .secondary {
-  background-color: #aa1f59;
+  background-color: var(--color-danger);
 }
 
 .tertiary {
-  background-color: #3174aa;
+  background-color: var(--color-info);
   min-width: 250px;
 }
 
 .cancel {
-  background-color: #aa1f59;
+  background-color: var(--color-danger);
   width: auto;
 }
 
 .update {
-  background-color: #b1ae08;
+  background-color: var(--color-warning);
   width: auto;
 }
 .button:hover {
